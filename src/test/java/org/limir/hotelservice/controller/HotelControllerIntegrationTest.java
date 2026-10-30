@@ -39,7 +39,7 @@ class HotelControllerIntegrationTest {
         mockMvc.perform(post("/hotels")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(hotelJson("DoubleTree by Hilton Minsk", "Hilton", "Minsk", "Belarus")))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.name").value("DoubleTree by Hilton Minsk"))
                 .andExpect(jsonPath("$.description").value("Hotel description"))
@@ -238,7 +238,7 @@ class HotelControllerIntegrationTest {
         String response = mockMvc.perform(post("/hotels")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(request))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();

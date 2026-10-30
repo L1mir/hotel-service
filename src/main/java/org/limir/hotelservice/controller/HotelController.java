@@ -13,12 +13,10 @@ import org.limir.hotelservice.dto.HotelSearchCriteria;
 import org.limir.hotelservice.dto.HotelShortResponse;
 import org.limir.hotelservice.service.HotelService;
 import org.springdoc.core.annotations.ParameterObject;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -45,7 +43,6 @@ public class HotelController {
 
     @Operation(summary = "Create a new hotel")
     @PostMapping("/hotels")
-    @ResponseStatus(HttpStatus.CREATED)
     public HotelShortResponse createHotel(@Valid @RequestBody HotelCreateRequest request) {
         return hotelService.createHotel(request);
     }
