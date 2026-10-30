@@ -12,14 +12,23 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: amenity_order
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
                   name: amenity
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
         - addPrimaryKey:
             tableName: hotel_amenities
-            columnNames: hotel_id, amenity
+            columnNames: hotel_id, amenity_order
             constraintName: pk_hotel_amenities
+        - addUniqueConstraint:
+            tableName: hotel_amenities
+            columnNames: hotel_id, amenity
+            constraintName: uk_hotel_amenities_hotel_amenity
         - addForeignKeyConstraint:
             baseTableName: hotel_amenities
             baseColumnNames: hotel_id
