@@ -13,4 +13,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ProblemDetail handleHotelNotFound(HotelNotFoundException exception) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, exception.getMessage());
     }
+
+    @ExceptionHandler(UnsupportedHistogramParameterException.class)
+    public ProblemDetail handleUnsupportedHistogramParameter(UnsupportedHistogramParameterException exception) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
+    }
 }

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.limir.hotelservice.dto.HotelCreateRequest;
 import org.limir.hotelservice.dto.HotelDetailsResponse;
+import org.limir.hotelservice.dto.HotelSearchCriteria;
 import org.limir.hotelservice.dto.HotelShortResponse;
 import org.limir.hotelservice.service.HotelService;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -42,5 +44,15 @@ public class HotelController {
     @PostMapping("/hotels/{id}/amenities")
     public void addAmenities(@PathVariable Long id, @RequestBody List<@NotBlank String> amenities) {
         hotelService.addAmenities(id, amenities);
+    }
+
+    @GetMapping("/search")
+    public List<HotelShortResponse> searchHotels(HotelSearchCriteria criteria) {
+        return hotelService.searchHotels(criteria);
+    }
+
+    @GetMapping("/histogram/{param}")
+    public Map<String, Long> getHistogram(@PathVariable String param) {
+        return hotelService.getHistogram(param);
     }
 }
